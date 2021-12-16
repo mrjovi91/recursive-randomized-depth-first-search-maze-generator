@@ -28,7 +28,7 @@ class MazeController:
             self._maze.append(row)
 
         
-    def make_move(self):
+    def move_to_next_cell(self):
         directions = {
             'up': [-1, 0],
             'down': [1, 0],
@@ -46,6 +46,10 @@ class MazeController:
                     new_current_x < self._columns and 
                     new_current_x >= 0):
                 continue
+            
+            cell = self._maze[new_current_x][n]
+
+            break
 
     def mark_current_cell(self):
         if self._maze[self._current_position[0]][self._current_position[1]].visited:
@@ -59,13 +63,13 @@ class MazeController:
     def generate_maze(self):
         self._view.refresh(self._maze, self._current_position, self._cell_x, self._cell_y)
         self._root.update()
-
-        self.mark_current_cell()
-
         
         if self.maze_is_complete:
             sleep (5)
             return True
+
+        self.mark_current_cell()
+        self.move_to_next_cell()
         sleep(0.5)
         self.generate_maze()
 
