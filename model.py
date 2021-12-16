@@ -11,3 +11,9 @@ class Cell:
             'bottom': [True,  positionX*cell_x, positionY*cell_y + cell_y, positionX*cell_x + cell_x, positionY*cell_y + cell_y],
             'right': [True,  positionX*cell_x + cell_x, positionY*cell_y, positionX*cell_x + cell_x, positionY*cell_y + cell_y]
         }
+
+    def destroy_bottom_wall(self):
+        self.walls['bottom'][0] = False
+
+    def destroy_right_wall(self):
+        self.walls['right'][0] = False
