@@ -6,19 +6,20 @@ from view import MazeView
 from queue import LifoQueue
 
 class MazeController:
-    def __init__(self):
+    def __init__(self, xDimension, yDimension, rows, columns):
         self._root = Tk()
         self._view = MazeView()
-        self._root.geometry("600x600")
-        self._cell_size = 60
+        self._root.geometry(f"{xDimension}x{yDimension}")
+        self._cell_x = xDimension / columns
+        self._cell_y = yDimension / rows
         self._current_position = [0,0]
         self._path = LifoQueue()
 
         self._maze = []
-        for i in range(0,10):
+        for y in range(0,rows):
             row = []
-            for j in range(0,10):
-                row.append(Cell(i, j, self._cell_size))
+            for x in range(0,columns):
+                row.append(Cell(x, y, self._cell_x, self._cell_y))
             self._maze.append(row)
 
         
@@ -31,7 +32,7 @@ class MazeController:
             except:
                 continue
 
-        self._view.refresh(self._maze, self._current_position, self._cell_size)
+        self._view.refresh(self._maze, self._current_position, self._cell_x, self._cell_y)
         self._root.update()
         
         if self.maze_is_complete:

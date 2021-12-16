@@ -11,12 +11,12 @@ class MazeView(Frame):
         self._canvas = Canvas(self)
 
 
-    def refresh(self, maze, current_position, cell_size):
+    def refresh(self, maze, current_position, cell_x, cell_y):
         self._canvas.delete("all")
-        for i, row in enumerate(maze):
-            for j, cell in enumerate(row):
+        for x, row in enumerate(maze):
+            for y, cell in enumerate(row):
                 color = None
-                if current_position[0] == i and current_position[1] == j:
+                if current_position[0] == x and current_position[1] == y:
                     color = settings['current']
                 elif cell.backtracked:
                     color = settings['backtracked']
@@ -25,10 +25,10 @@ class MazeView(Frame):
 
                 if color is not None:
                     self._canvas.create_rectangle(
-                        i*cell_size+1, 
-                        j*cell_size+1, 
-                        i*cell_size + cell_size, 
-                        j*cell_size + cell_size, 
+                        x*cell_x + 1, 
+                        y*cell_y + 1, 
+                        x*cell_x + cell_x, 
+                        y*cell_y + cell_y, 
                         width=0,
                         fill=color
                     )
