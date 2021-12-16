@@ -1,5 +1,10 @@
+from tkinter.constants import X
+
+
 class Cell:
     def __init__(self, positionX, positionY, cell_x, cell_y):
+        self.positionX = positionX
+        self.positionY = positionY
         self.visited = False
         self.backtracked = False
         self.walls = {

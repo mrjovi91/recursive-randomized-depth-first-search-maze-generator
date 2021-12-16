@@ -31,15 +31,14 @@ class MazeController:
     def move_to_next_cell(self):
         directions = {
             'up': [-1, 0],
+            'right': [0, 1],
             'down': [1, 0],
-            'left': [0, -1],
-            'right': [0, 1]
+            'left': [0, -1]
         }
-        direction = None
-        while True:
-            direction = random.choice(directions.keys())
-            new_current_x = self._current_position[0] + directions[direction][0]
-            new_current_y = self._current_position[1] + directions[direction][1]
+
+        for direction, coordinates in directions.items():
+            new_current_y = self._current_position[0] + coordinates[0]
+            new_current_x = self._current_position[1] + coordinates[1]
 
             if (new_current_y < self._rows and
                     new_current_y >= 0 and
@@ -47,18 +46,25 @@ class MazeController:
                     new_current_x >= 0):
                 continue
             
-            cell = self._maze[new_current_x][n]
+            cell = self._maze[new_current_y][new_current_x]
+            if cell.visited or cell.backtracked:
+                continue
 
-            break
+            self._path.put(self._current_position.copy())
+
+            self._current_position[0] = new_current_y
+            self._current_position[1] = new_current_x
+            return
+
+        # If reach here, all nearby paths are visited. Time to backtrack.
+        if not self._path.empty():
+            self._current_position = self._path.get().copy()
 
     def mark_current_cell(self):
         if self._maze[self._current_position[0]][self._current_position[1]].visited:
             self._maze[self._current_position[0]][self._current_position[1]].backtracked = True
         else:
             self._maze[self._current_position[0]][self._current_position[1]].visited = True
-
-
-
 
     def generate_maze(self):
         self._view.refresh(self._maze, self._current_position, self._cell_x, self._cell_y)
