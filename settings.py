@@ -1,4 +1,4 @@
 settings = {}
 settings['current'] = 'green'
-settings['visited'] = 'orange'
-settings['backtracked'] = 'purple'
+settings['visited'] = 'purple'
+settings['backtracked'] = 'orange'

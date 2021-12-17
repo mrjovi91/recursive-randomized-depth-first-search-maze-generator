@@ -115,14 +115,14 @@ class MazeController:
         
         if self.maze_is_complete():
             print('Maze complete!')
-            sleep(5)
+            self._root.mainloop()
             return
 
         print('Marking current cell')
         self.mark_current_cell()
         print('Moving to next cell')
         self.move_to_next_cell()
-        sleep(0.5)
+        sleep(0.125)
         print()
         return self.generate_maze()
 

@@ -24,9 +24,20 @@ class MazeView(Frame):
                     color = settings['visited']
 
                 if color is not None:
+                    x_start = x*cell_x
+                    if x != 0:
+                        if maze[y][x-1].right_wall_exists():
+                            x_start = x*cell_x + 1
+
+                    y_start = y*cell_y
+                    if y != 0:
+                        if maze[y-1][x].bottom_wall_exists():
+                            y_start = y*cell_y + 1
+
+
                     self._canvas.create_rectangle(
-                        x*cell_x + 1, 
-                        y*cell_y + 1, 
+                        x_start, 
+                        y_start, 
                         x*cell_x + cell_x, 
                         y*cell_y + cell_y, 
                         width=0,

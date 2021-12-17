@@ -12,8 +12,15 @@ class Cell:
             'right': [True,  positionX*cell_x + cell_x, positionY*cell_y, positionX*cell_x + cell_x, positionY*cell_y + cell_y]
         }
 
+    def bottom_wall_exists(self):
+        return self.walls['bottom'][0]
+
+    def right_wall_exists(self):
+        return self.walls['right'][0] 
+
     def destroy_bottom_wall(self):
         self.walls['bottom'][0] = False
 
     def destroy_right_wall(self):
         self.walls['right'][0] = False
+
