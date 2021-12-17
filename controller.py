@@ -93,6 +93,8 @@ class MazeController:
             return
 
         # If reach here, all nearby paths are visited. Time to backtrack.
+        self._maze[self._current_position[0]][self._current_position[1]].visited = True
+        self._maze[self._current_position[0]][self._current_position[1]].backtracked = True
         if not self._path.empty():
             self._current_position = self._path.get().copy()
             print(f'Backtracking to {self._current_position}')
