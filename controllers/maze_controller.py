@@ -3,8 +3,8 @@ from time import sleep
 from queue import LifoQueue
 import random
 
-from model import Cell
-from view import MazeView
+from Model.cell import Cell
+from view.maze_view import MazeView
 
 
 class MazeController:
@@ -28,6 +28,8 @@ class MazeController:
             for x in range(0,columns):
                 row.append(Cell(x, y, self._cell_x, self._cell_y))
             self._maze.append(row)
+
+    
 
         
     def move_to_next_cell(self):
@@ -122,7 +124,7 @@ class MazeController:
         self.mark_current_cell()
         print('Moving to next cell')
         self.move_to_next_cell()
-        sleep(0.125)
+        # sleep(0.125)
         print()
         return self.generate_maze()
 

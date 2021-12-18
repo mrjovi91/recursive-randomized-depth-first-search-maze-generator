@@ -1,4 +1,4 @@
-from controller import MazeController
+from controllers.maze_controller import MazeController
 
 def main():
     print('Would you like to use following defaults:-')

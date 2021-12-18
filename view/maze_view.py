@@ -1,5 +1,5 @@
 from tkinter import Canvas, Frame, BOTH
-from model import Cell
+from Model.cell import Cell
 from settings import settings
 
 class MazeView(Frame):
