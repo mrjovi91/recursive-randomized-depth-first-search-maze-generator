@@ -3,7 +3,7 @@ from time import sleep
 from queue import LifoQueue
 import random
 
-from Model.cell import Cell
+from model.cell import Cell
 from view.maze_view import MazeView
 
 
