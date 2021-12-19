@@ -16,7 +16,6 @@ class MazeView(Frame):
         for y, row in enumerate(maze):
             for x, cell in enumerate(row):
                 color = None
-                print(cell.current)
                 if cell.current:
                     color = settings['current']
                 elif cell.backtracked:

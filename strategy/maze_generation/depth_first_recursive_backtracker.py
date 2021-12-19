@@ -78,7 +78,7 @@ class DepthFirstRecursiveBacktracker(MazeGenerationStrategy):
         current_cell.unmark_as_current()
         if not self._path.empty():
             self._current_position = self._path.get().copy()
-            self._maze[self._current_position[1]][self._current_position[0]].mark_as_current()
+            self._maze[self._current_position[0]][self._current_position[1]].mark_as_current()
             print(f'Backtracking to {self._current_position}')
 
     def mark_current_cell(self):
