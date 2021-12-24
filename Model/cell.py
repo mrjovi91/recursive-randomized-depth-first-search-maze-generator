@@ -5,6 +5,7 @@ class Cell:
     def __init__(self, positionX, positionY, cell_x, cell_y):
         self.positionX = positionX
         self.positionY = positionY
+        self.current = False
         self.visited = False
         self.backtracked = False
         self.walls = {
@@ -23,4 +24,10 @@ class Cell:
 
     def destroy_right_wall(self):
         self.walls['right'][0] = False
+
+    def mark_as_current(self):
+        self.current = True
+
+    def unmark_as_current(self):
+        self.current = False
 

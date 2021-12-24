@@ -1,5 +1,5 @@
 from tkinter import Canvas, Frame, BOTH
-from Model.cell import Cell
+from model.cell import Cell
 from settings import settings
 
 class MazeView(Frame):
@@ -11,12 +11,12 @@ class MazeView(Frame):
         self._canvas = Canvas(self)
 
 
-    def refresh(self, maze, current_position, cell_y, cell_x):
+    def refresh(self, maze, cell_y, cell_x):
         self._canvas.delete("all")
         for y, row in enumerate(maze):
             for x, cell in enumerate(row):
                 color = None
-                if (current_position[1] == x and current_position[0] == y ):
+                if cell.current:
                     color = settings['current']
                 elif cell.backtracked:
                     color = settings['backtracked']
