@@ -5,6 +5,7 @@ import random
 
 from model.cell import Cell
 from strategy.maze_generation.depth_first_recursive_backtracker import DepthFirstRecursiveBacktracker
+from strategy.path_finding.no_strategy import NoPathFindingStrategy
 from view.maze_view import MazeView
 
 
@@ -29,6 +30,7 @@ class MazeController:
             self._maze.append(row)
 
         self._generation_strategy = DepthFirstRecursiveBacktracker(self._maze)
+        self._path_finding_strategy = NoPathFindingStrategy(self._maze)
 
     def generate_maze(self):
         self._iteration += 1
@@ -38,9 +40,14 @@ class MazeController:
         
         if self._generation_strategy.completed():
             print('Maze complete!')
-            self._root.mainloop()
             return
 
         self._generation_strategy.render()
         return self.generate_maze()
+
+    def generate_path(self):
+        if self._path_finding_strategy.completed():
+            self._root.mainloop()
+            return
+        return self.generate_path()
 

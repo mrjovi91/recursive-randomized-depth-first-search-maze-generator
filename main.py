@@ -25,6 +25,7 @@ def main():
         columns = columns
         )
     maze_generator.generate_maze()
+    maze_generator.generate_path()
 
 if __name__ == '__main__':
     import sys
