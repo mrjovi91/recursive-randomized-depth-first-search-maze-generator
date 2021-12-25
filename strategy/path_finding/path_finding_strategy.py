@@ -5,5 +5,9 @@ class PathFindingStrategy(ABC):
         self._maze = maze
 
     @abstractmethod
+    def render(self):
+        pass
+
+    @abstractmethod
     def completed(self):
         pass
