@@ -22,6 +22,10 @@ class MazeView(Frame):
                 color = None
                 if cell.current:
                     color = settings['current']
+                elif cell.path:
+                    color = settings['path']
+                elif cell.computed:
+                    color = settings['computed']
                 elif cell.backtracked:
                     color = settings['backtracked']
                 elif cell.visited:
@@ -53,21 +57,22 @@ class MazeView(Frame):
                         self._canvas.create_line(wall[1], wall[2], wall[3], wall[4])
 
                 if algo_type == 'path_finding':
-                    self._canvas.create_text(
-                        x*cell_x + cell_x/4,
-                        y*cell_y + cell_y/4,
-                        text = column.g * 10
-                    )
-                    self._canvas.create_text(
-                        (x+1)*cell_x - cell_x/4,
-                        y*cell_y + cell_y/4,
-                        text = column.h * 10
-                    )
+                    if cell.computed:
+                        self._canvas.create_text(
+                            x*cell_x + cell_x/4,
+                            y*cell_y + cell_y/4,
+                            text = column.g * 10
+                        )
+                        self._canvas.create_text(
+                            (x+1)*cell_x - cell_x/4,
+                            y*cell_y + cell_y/4,
+                            text = column.h * 10
+                        )
 
-                    self._canvas.create_text(
-                        (x+1)*cell_x - cell_x/2,
-                        (y+1)*cell_y - cell_y/4,
-                        text = (column.g + column.h) * 10
-                    )
+                        self._canvas.create_text(
+                            (x+1)*cell_x - cell_x/2,
+                            (y+1)*cell_y - cell_y/4,
+                            text = (column.g + column.h) * 10
+                        )
 
         self._canvas.pack(fill=BOTH, expand=1)
