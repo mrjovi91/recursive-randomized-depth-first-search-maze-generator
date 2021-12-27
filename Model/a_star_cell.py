@@ -12,3 +12,7 @@ class AStarCell:
         self._g = g
         self._h = h
         self._f = g + h
+
+    @property
+    def cell(self):
+        return self._cell

@@ -35,7 +35,7 @@ class MazeController:
     def generate_maze(self):
         self._iteration += 1
         print(f'Iteration: {self._iteration}')
-        self._view.refresh(self._maze, self._cell_y, self._cell_x)
+        self._view.refresh('maze_generation', self._maze, self._cell_y, self._cell_x)
         self._root.update()
         
         if self._generation_strategy.completed():
