@@ -3,6 +3,8 @@ from model.cell import Cell
 class AStarCell:
     def __init__(self, cell):
         self._cell = cell
+        self.start = False
+        self.end = False
         self._g = float('inf') # Distance from starting node
         self._h = float('inf') # Distance from end node
         self._f = float('inf') # G cost + H cost

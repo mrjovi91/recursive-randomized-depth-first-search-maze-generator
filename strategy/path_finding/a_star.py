@@ -17,13 +17,15 @@ class AStarPathFindingStrategy(PathFindingStrategy):
             for j, cell in enumerate(row):
                 formatted_maze[i].append(AStarCell(cell))
 
-        self._end = formatted_maze[5][10]
+        self._end = formatted_maze[5][5]
+        self._end.end = True
 
-        self._start = formatted_maze[3][4]
+        self._start = formatted_maze[7][2]
         self._start.cell.current = True
         start_g = 0
         start_h = self.heuristic(self._start)
         self._start.set_cost(start_g, start_h)
+        self._start.start = True
 
         self._count = 0
         self._open_set.put((0, self._count , self._start))

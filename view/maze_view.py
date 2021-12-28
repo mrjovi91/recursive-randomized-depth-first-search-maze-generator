@@ -11,6 +11,13 @@ class MazeView(Frame):
         self.pack(fill=BOTH, expand=1)
         self._canvas = Canvas(self)
 
+    def _create_circle(self, x, y, r): #center coordinates, radius
+        x0 = x - r
+        y0 = y - r
+        x1 = x + r
+        y1 = y + r
+        return self._canvas.create_oval(x0, y0, x1, y1)
+
 
     def refresh(self, algo_type, maze, cell_y, cell_x):
         self._canvas.delete("all")
@@ -57,23 +64,44 @@ class MazeView(Frame):
                     if wall[0]:
                         self._canvas.create_line(wall[1], wall[2], wall[3], wall[4])
 
-                if algo_type == 'path_finding' and self._debug:
-                    if cell.computed:
-                        self._canvas.create_text(
+                if algo_type == 'path_finding':
+                    if self._debug:
+                        if cell.computed:
+                            self._canvas.create_text(
+                                x*cell_x + cell_x/4,
+                                y*cell_y + cell_y/4,
+                                text = column.g * 10
+                            )
+                            self._canvas.create_text(
+                                (x+1)*cell_x - cell_x/4,
+                                y*cell_y + cell_y/4,
+                                text = column.h * 10
+                            )
+
+                            self._canvas.create_text(
+                                (x+1)*cell_x - cell_x/2,
+                                (y+1)*cell_y - cell_y/4,
+                                text = (column.g + column.h) * 10
+                            )
+                    if column.start:
+                        self._create_circle(
+                            x*cell_x + cell_x/2,
+                            y*cell_y + cell_y/2,
+                            (cell_x + cell_y)/2/4
+                        )
+                    if column.end:
+                        self._canvas.create_line(
                             x*cell_x + cell_x/4,
                             y*cell_y + cell_y/4,
-                            text = column.g * 10
+                            (x+1)*cell_x - cell_x/4,
+                            (y+1)*cell_y - cell_y/4
                         )
-                        self._canvas.create_text(
+                        self._canvas.create_line(
                             (x+1)*cell_x - cell_x/4,
                             y*cell_y + cell_y/4,
-                            text = column.h * 10
+                            x*cell_x + cell_x/4,
+                            (y+1)*cell_y - cell_y/4
                         )
 
-                        self._canvas.create_text(
-                            (x+1)*cell_x - cell_x/2,
-                            (y+1)*cell_y - cell_y/4,
-                            text = (column.g + column.h) * 10
-                        )
 
         self._canvas.pack(fill=BOTH, expand=1)
