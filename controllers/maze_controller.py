@@ -32,7 +32,7 @@ class MazeController:
             self._maze.append(row)
 
         self._generation_strategy = DepthFirstRecursiveBacktracker(self._maze)
-        self._path_finding_strategy = AStarPathFindingStrategy(self._maze)
+        self._path_finding_strategy = None
 
     def generate_maze(self):
         self._iteration += 1
@@ -42,6 +42,7 @@ class MazeController:
         
         if self._generation_strategy.completed():
             print('Maze generation complete!')
+            self._path_finding_strategy = AStarPathFindingStrategy(self._maze)
             return
 
         self._generation_strategy.render()

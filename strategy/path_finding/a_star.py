@@ -17,9 +17,9 @@ class AStarPathFindingStrategy(PathFindingStrategy):
             for j, cell in enumerate(row):
                 formatted_maze[i].append(AStarCell(cell))
 
-        self._end = formatted_maze[-1][-1]
+        self._end = formatted_maze[5][10]
 
-        self._start = formatted_maze[0][0]
+        self._start = formatted_maze[3][4]
         self._start.cell.current = True
         start_g = 0
         start_h = self.heuristic(self._start)
