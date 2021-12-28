@@ -14,7 +14,7 @@ class MazeController:
     def __init__(self, xDimension, yDimension, rows, columns, debug=False):
         self._debug = debug
         self._root = Tk()
-        self._view = MazeView()
+        self._view = MazeView(debug)
         self._root.geometry(f"{xDimension}x{yDimension}")
 
         self._rows = rows
