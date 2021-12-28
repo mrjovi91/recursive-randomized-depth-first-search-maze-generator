@@ -16,7 +16,7 @@ class AStarCell:
         return self._cell.right_wall_exists()
 
     def bottom_wall_exists(self):
-        return self._cell.right_wall_exists()
+        return self._cell.bottom_wall_exists()
 
     @property
     def cell(self):
