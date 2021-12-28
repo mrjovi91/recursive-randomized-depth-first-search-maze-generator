@@ -57,6 +57,7 @@ class MazeController:
             print('Optimal path found!')
             self._root.mainloop()
             return
+        self._path_finding_strategy.render()
         self._view.refresh('path_finding', self._path_finding_strategy._maze, self._cell_y, self._cell_x)
         self._root.update()
         input()
