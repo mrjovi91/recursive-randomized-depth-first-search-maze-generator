@@ -1,6 +1,6 @@
 settings = {}
-settings['current'] = 'green'
+settings['current'] = 'red'
 settings['visited'] = 'purple'
 settings['backtracked'] = 'orange'
-settings['computed'] = 'green'
+settings['computed'] = 'white'
 settings['path'] = 'red'

@@ -9,5 +9,13 @@ class PathFindingStrategy(ABC):
         pass
 
     @abstractmethod
-    def completed(self):
+    def render_completed(self):
+        pass
+
+    @abstractmethod
+    def display_shortest_path(self):
+        pass
+
+    @abstractmethod
+    def display_shortest_path_completed(self):
         pass

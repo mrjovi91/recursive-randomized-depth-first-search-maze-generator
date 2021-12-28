@@ -19,15 +19,15 @@ class AStarPathFindingStrategy(PathFindingStrategy):
 
         self._end = formatted_maze[-1][-1]
 
-        start_cell = formatted_maze[0][0]
-        start_cell.cell.current = True
+        self._start = formatted_maze[0][0]
+        self._start.cell.current = True
         start_g = 0
-        start_h = self.heuristic(start_cell)
-        start_cell.set_cost(start_g, start_h)
+        start_h = self.heuristic(self._start)
+        self._start.set_cost(start_g, start_h)
 
         self._count = 0
-        self._open_set.put((0, self._count , start_cell))
-        self._closed_set = [start_cell]
+        self._open_set.put((0, self._count , self._start))
+        self._closed_set = [self._start]
         super().__init__(formatted_maze)
 
     def heuristic(self, cell):
@@ -93,7 +93,7 @@ class AStarPathFindingStrategy(PathFindingStrategy):
                     self._open_set.put((neighbour.f, self._count, neighbour))
                     self._closed_set.append(neighbour)
 
-    def completed(self):
+    def render_completed(self):
         print(list(self._open_set.queue))
         if self._open_set.empty():
             return True
@@ -107,6 +107,16 @@ class AStarPathFindingStrategy(PathFindingStrategy):
 
         if self._current == self._end:
             self._current.cell.current = False
+            return True
+        return False
+
+    def display_shortest_path(self):
+        self._current.cell.path = True
+        self._current = self._from_list[self._current]
+
+    def display_shortest_path_completed(self):
+        if self._current == self._start:
+            self._current.cell.path = True
             return True
         return False
 

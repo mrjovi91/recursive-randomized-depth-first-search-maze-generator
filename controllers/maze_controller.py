@@ -11,7 +11,8 @@ from view.maze_view import MazeView
 
 
 class MazeController:
-    def __init__(self, xDimension, yDimension, rows, columns):
+    def __init__(self, xDimension, yDimension, rows, columns, debug=False):
+        self._debug = debug
         self._root = Tk()
         self._view = MazeView()
         self._root.geometry(f"{xDimension}x{yDimension}")
@@ -52,14 +53,24 @@ class MazeController:
     def generate_path(self):
         self._iteration += 1
         print(f'Iteration: {self._iteration}')
-        if self._path_finding_strategy.completed():
+        if self._path_finding_strategy.render_completed():
             self._view.refresh('path_finding', self._path_finding_strategy._maze, self._cell_y, self._cell_x)
+            self._root.update()
             print('Optimal path found!')
-            self._root.mainloop()
             return
         self._path_finding_strategy.render()
         self._view.refresh('path_finding', self._path_finding_strategy._maze, self._cell_y, self._cell_x)
         self._root.update()
-        input()
         return self.generate_path()
+
+    def display_path(self):
+        self._path_finding_strategy.display_shortest_path()
+        self._view.refresh('path_finding', self._path_finding_strategy._maze, self._cell_y, self._cell_x)
+        self._root.update()
+        if self._path_finding_strategy.display_shortest_path_completed():
+            self._view.refresh('path_finding', self._path_finding_strategy._maze, self._cell_y, self._cell_x)
+            self._root.mainloop()
+            return
+        self.display_path()
+        
 

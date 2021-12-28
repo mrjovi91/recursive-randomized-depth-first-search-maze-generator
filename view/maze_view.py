@@ -4,7 +4,8 @@ from settings import settings
 
 class MazeView(Frame):
 
-    def __init__(self):
+    def __init__(self, debug=False):
+        self._debug = debug
         super().__init__()
         self.master.title("Maze")
         self.pack(fill=BOTH, expand=1)
@@ -20,10 +21,10 @@ class MazeView(Frame):
                 else:
                     cell = column
                 color = None
-                if cell.current:
-                    color = settings['current']
-                elif cell.path:
+                if cell.path:
                     color = settings['path']
+                elif cell.current:
+                    color = settings['current']
                 elif cell.computed:
                     color = settings['computed']
                 elif cell.backtracked:
@@ -56,7 +57,7 @@ class MazeView(Frame):
                     if wall[0]:
                         self._canvas.create_line(wall[1], wall[2], wall[3], wall[4])
 
-                if algo_type == 'path_finding':
+                if algo_type == 'path_finding' and self._debug:
                     if cell.computed:
                         self._canvas.create_text(
                             x*cell_x + cell_x/4,

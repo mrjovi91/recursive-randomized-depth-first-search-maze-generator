@@ -15,8 +15,8 @@ def main():
     else:
         xDimension = 600
         yDimension = 600
-        rows = 10
-        columns = 10
+        rows = 20
+        columns = 20
 
     maze_generator = MazeController(
         xDimension = xDimension, 
@@ -29,8 +29,9 @@ def main():
     print()
     print('Solving maze...')
     maze_generator.generate_path()
+    maze_generator.display_path()
 
 if __name__ == '__main__':
     import sys
-    sys.setrecursionlimit(1500)
+    sys.setrecursionlimit(100000)
     main()
