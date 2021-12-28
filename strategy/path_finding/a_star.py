@@ -3,6 +3,7 @@ from model.a_star_cell import AStarCell
 from strategy.path_finding.path_finding_strategy import PathFindingStrategy
 
 from queue import PriorityQueue
+import random
 
 class AStarPathFindingStrategy(PathFindingStrategy):
     DISTANCE_BETWEEN_CELLS = 10
@@ -17,10 +18,15 @@ class AStarPathFindingStrategy(PathFindingStrategy):
             for j, cell in enumerate(row):
                 formatted_maze[i].append(AStarCell(cell))
 
-        self._end = formatted_maze[5][5]
+        while True:
+            self._end = random.choice(random.choice(formatted_maze))
+            self._start = random.choice(random.choice(formatted_maze))
+            if self._end != self._start:
+                break
+
         self._end.end = True
 
-        self._start = formatted_maze[7][2]
+        
         self._start.cell.current = True
         start_g = 0
         start_h = self.heuristic(self._start)

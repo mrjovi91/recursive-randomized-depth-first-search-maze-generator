@@ -3,8 +3,8 @@ from controllers.maze_controller import MazeController
 def main():
     print('Would you like to use following defaults:-')
     print('Window dimension 600x600')
-    print('Number of rows: 20')
-    print('Number of columns: 20')
+    print('Number of rows: 15')
+    print('Number of columns: 15')
     prompt = input('Answer(Y/N): ')
     if prompt.upper() == 'N':
         xDimension = int(input("Enter X Dimension of window: "))
@@ -15,8 +15,8 @@ def main():
     else:
         xDimension = 600
         yDimension = 600
-        rows = 10
-        columns = 10
+        rows = 15
+        columns = 15
 
     maze_generator = MazeController(
         xDimension = xDimension, 
