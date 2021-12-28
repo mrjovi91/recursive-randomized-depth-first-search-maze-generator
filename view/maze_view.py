@@ -1,6 +1,7 @@
 from tkinter import Canvas, Frame, BOTH
 from model.cell import Cell
 from settings import settings
+from time import sleep
 
 class MazeView(Frame):
 
@@ -20,6 +21,7 @@ class MazeView(Frame):
 
 
     def refresh(self, algo_type, maze, cell_y, cell_x):
+        sleep(0.125)
         self._canvas.delete("all")
         for y, row in enumerate(maze):
             for x, column in enumerate(row):

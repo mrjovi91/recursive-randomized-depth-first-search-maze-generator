@@ -15,8 +15,8 @@ def main():
     else:
         xDimension = 600
         yDimension = 600
-        rows = 15
-        columns = 15
+        rows = 10
+        columns = 10
 
     maze_generator = MazeController(
         xDimension = xDimension, 
